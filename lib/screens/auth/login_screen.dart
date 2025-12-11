@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../core/validators.dart';
+import '../../core/constants/validators.dart';
 import 'signup_screen.dart';
 import 'forgot_password.dart';
 import '../home/home_screen.dart';
