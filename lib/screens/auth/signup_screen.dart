@@ -217,7 +217,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 // Password
                 TextFormField(
                   controller: _passwordController,
-                  validator: Validators.validateSignupPassword,
+                  validator: Validators.validatePassword,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     labelText: 'Password',
