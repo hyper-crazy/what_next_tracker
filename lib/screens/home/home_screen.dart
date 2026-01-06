@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Badge(
               isLabelVisible: _selectedTypeFilter != 'All',
               label: const Text("!"),
-              child: Icon(_selectedTypeFilter == 'All' ? Icons.filter_alt_rounded : Icons.filter_alt_off_rounded),
+              child: Icon(_selectedTypeFilter == 'All' ? Icons.filter_list_rounded : Icons.filter_list_off_rounded),
             ),
             onPressed: _showTypeFilterMenu,
           ),
