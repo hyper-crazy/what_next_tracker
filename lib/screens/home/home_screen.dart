@@ -5,6 +5,7 @@ import '../../core/constants/content_constrains.dart';
 import '../../widgets/media_card.dart';
 import '../media/add_media_screen.dart';
 import '../auth/login_screen.dart';
+import '../profile/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -200,6 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Text("Hello, $username", style: TextStyle(fontSize: 12, color: theme.colorScheme.onSurfaceVariant)),
           ],
         ),
+
         actions: [
           IconButton(
             icon: Badge(
@@ -209,7 +211,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: _showTypeFilterMenu,
           ),
-          IconButton(icon: const Icon(Icons.logout_rounded), onPressed: _logout),
+
+          IconButton(
+            icon: const Icon(Icons.account_circle_rounded), // Use a profile icon
+            tooltip: 'My Profile',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              );
+            },
+          ),
         ],
       ),
 
