@@ -43,6 +43,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: build/app/outputs/flutter-apk/watch-next.apk
+          files: build/app/outputs/apk/release/watch-next.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
