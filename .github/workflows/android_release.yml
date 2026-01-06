@@ -1,15 +1,43 @@
 name: Android Release
 
 on:
-  # This allows you to click a "Run" button manually
-  workflow_dispatch:
-
-  # Keep the tag trigger for later
   push:
     tags:
-      - 'v*'
+      - 'v*' # Triggers only when you push a tag like v1.0, v2.0
 
 jobs:
   build:
     name: Build APK & Release
-    # ... (The rest of the file stays exactly the same) ...
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to upload the release
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        # This will use your gradle settings to generate watch-next.apk
+        run: flutter build apk --release
+
+      - name: Create Release on GitHub
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: build/app/outputs/flutter-apk/watch-next.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
