@@ -25,12 +25,15 @@ class Validators {
     return null;
   }
 
-  static String? validateSignupPassword(String? value) {
+  static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) return 'Password is required';
+
+    // Strict Rules
     if (value.length < 10) return 'Must be at least 10 characters';
-    if (!value.contains(RegExp(r'[A-Za-z]'))) return 'Must contain at least one letter';
-    if (!value.contains(RegExp(r'[0-9]'))) return 'Must contain at least one number';
-    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) return 'Must contain at least one symbol';
-    return null;
+    if (!value.contains(RegExp(r'[a-zA-Z]'))) return 'Missing a letter';
+    if (!value.contains(RegExp(r'[0-9]'))) return 'Missing a number';
+    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) return 'Missing a symbol';
+
+    return null; // Valid Password
   }
 }
