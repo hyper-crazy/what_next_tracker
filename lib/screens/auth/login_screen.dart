@@ -120,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Email
                 TextFormField(
+                  key: const Key('login_email'),
                   controller: _emailController,
                   validator: Validators.validateEmail,
                   keyboardType: TextInputType.emailAddress,
@@ -132,6 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Password
                 TextFormField(
+                  key: const Key('login_password'),
                   controller: _passwordController,
                   validator: Validators.validateLoginPassword,
                   obscureText: _obscurePassword,
@@ -164,6 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 50,
                   child: FilledButton(
+                    key: const Key('login_button'),
                     onPressed: _isLoading ? null : _login,
                     child: _isLoading
                         ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))

@@ -140,6 +140,7 @@ class _AddMediaScreenState extends State<AddMediaScreen> {
             children: [
               // Title
               TextFormField(
+                key: const Key('add_media_title'),
                 controller: _titleController,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: const InputDecoration(labelText: 'Title', prefixIcon: Icon(Icons.title)),
@@ -152,6 +153,7 @@ class _AddMediaScreenState extends State<AddMediaScreen> {
                 children: [
                   Expanded(
                     child: DropdownButtonFormField<String>(
+                      key: const Key('add_media_type_dropdown'),
                       value: _selectedType,
                       decoration: const InputDecoration(labelText: 'Type'),
                       items: AppConstants.mediaTypes.map((t) => DropdownMenuItem(value: t, child: Text(t))).toList(),
@@ -161,6 +163,7 @@ class _AddMediaScreenState extends State<AddMediaScreen> {
                   const SizedBox(width: 15),
                   Expanded(
                     child: DropdownButtonFormField<String>(
+                      key: const Key('add_media_status_dropdown'),
                       value: _selectedStatus,
                       decoration: const InputDecoration(labelText: 'Status'),
                       items: AppConstants.mediaStatuses.map((s) => DropdownMenuItem(value: s, child: Text(s))).toList(),
@@ -230,6 +233,7 @@ class _AddMediaScreenState extends State<AddMediaScreen> {
               SizedBox(
                 height: 50,
                 child: FilledButton(
+                  key: const Key('add_media_save'),
                   onPressed: _isLoading ? null : _saveMedia,
                   child: _isLoading ? const CircularProgressIndicator(color: Colors.white)
                       : Text(isEditing ? "Update Item" : "Save Item"),
