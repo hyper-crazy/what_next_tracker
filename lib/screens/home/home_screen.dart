@@ -213,6 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           IconButton(
+            key: const Key('home_profile_icon'),
             icon: const Icon(Icons.account_circle_rounded), // Use a profile icon
             tooltip: 'My Profile',
             onPressed: () {
