@@ -23,6 +23,7 @@ out/
 .gradle/
 **/build/
 app/build/
+local.properties
 
 # Flutter/Dart
 .dart_tool/

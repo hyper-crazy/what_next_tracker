@@ -6,7 +6,15 @@ import 'screens/home/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  
+  debugPrint("Starting Firebase initialization...");
+  try {
+    await Firebase.initializeApp();
+    debugPrint("Firebase initialized successfully!");
+  } catch (e) {
+    debugPrint("Firebase initialization error: $e");
+  }
+
   runApp(const MyApp());
 }
 
@@ -50,7 +58,9 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
           }
           if (snapshot.hasData) {
             return const HomeScreen(); // Go to Home Screen

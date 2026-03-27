@@ -1,5 +1,13 @@
 pluginManagement {
-    val flutterSdkPath = settings.extraProperties.get("flutter.sdk") as String
+    val flutterSdkPath = run {
+        val properties = java.util.Properties()
+        val propertiesFile = settingsDir.resolve("local.properties")
+        if (propertiesFile.exists()) {
+            propertiesFile.inputStream().use { properties.load(it) }
+        }
+        val sdkPath = properties.getProperty("flutter.sdk")
+        requireNotNull(sdkPath) { "flutter.sdk not set in local.properties. Run 'flutter pub get' in the project root." }
+    }
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
     repositories {
@@ -11,16 +19,8 @@ pluginManagement {
 
 plugins {
     id("dev.flutter.flutter-plugin-loader") version "1.0.0"
-    id("com.android.application") version "8.1.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.24" apply false
+    id("com.android.application") version "8.7.0" apply false
+    id("org.jetbrains.kotlin.android") version "2.1.0" apply false
 }
 
 include(":app")
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
